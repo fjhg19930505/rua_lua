@@ -372,6 +372,12 @@ pub unsafe fn luaL_loadbuffer(L: *mut lua_State,
     luaL_loadbufferx(L, buff, sz, name, ptr::null_mut())
 }
 
+#[cfg(feature = "json")]
+#[allow(improper_ctypes)]
+extern "C" {
+    pub fn luaopen_cjson(L : *mut lua_State);
+}
+
 impl default::Default for lua_Debug {
 
     fn default() -> lua_Debug {
